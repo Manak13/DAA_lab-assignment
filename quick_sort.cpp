@@ -4,24 +4,24 @@ using namespace std;
 int partition(int arr[], int start, int end)
 {
     int pivot = arr[end];
-    int pIndex = start;
+    int pIndex = start - 1;
 
     for (int i = start; i < end; i++)
     {
-        if (arr[i] < pivot)
+        if (arr[i] <= pivot)
         {
+            pIndex++;
             int temp = arr[i];
             arr[i] = arr[pIndex];
             arr[pIndex] = temp;
-            pIndex++;
         }
     }
 
-    int temp = arr[pIndex];
-    arr[pIndex] = arr[end];
+    int temp = arr[pIndex + 1];
+    arr[pIndex + 1] = arr[end];
     arr[end] = temp;
 
-    return pIndex;
+    return pIndex + 1;
 }
 
 void quickSort(int arr[], int start, int end)
@@ -37,8 +37,8 @@ void quickSort(int arr[], int start, int end)
 
 int main()
 {
-    int arr[] = {5, 3, 8, 4, 2};
-    int n = 5;
+    int arr[] = {6, 3, 9, 5, 2, 8};
+    int n = 6;
 
     quickSort(arr, 0, n - 1);
 
@@ -49,3 +49,4 @@ int main()
 
     return 0;
 }
+
