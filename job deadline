@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+class job{
+public:
+        int id;
+        int profit;
+        int deadline;
+};
+bool cmp(job val1,job val2){
+    if(val1.profit>val2.profit){
+        return true;
+    }
+   return false;
+}
+int main(){
+int n;
+
+cout<<"enter number of jobs";
+cin>>n;
+job arr[n];
+
+for(int i=0;i<n;i++){
+    cout<<"enter id "<<i+1<<endl;
+    cin>>arr[i].id;
+    cout<<"enter profit"<<endl;
+    cin>>arr[i].profit;
+    cout<<"enter deadline"<<endl;
+    cin>>arr[i].deadline;
+}
+sort(arr,arr+n,cmp) ;
+int maxdeadline=0;
+for(int i=0;i<n;i++){
+   maxdeadline=max(maxdeadline,arr[i].deadline);
+}
+int hash[maxdeadline+1];
+fill(hash,hash+maxdeadline+1,-1);
+int maxprofit=0;
+ for(int i=0;i<n;i++){
+    for(int j=arr[i].deadline;j>=1;j-- ){
+      if(hash[j]==-1) {
+          maxprofit=maxprofit+arr[i].profit;
+          hash[j]=arr[i].id;
+          break;
+      }
+        
+    }
+ }
+ cout<<maxprofit<<endl;
+ for(int i=1;i<=maxdeadline;i++){
+     if(hash[i]!=-1){cout<<hash[i];}
+ }
+    return 0;
+}
