@@ -1,0 +1,31 @@
+// minimum number of platforms 
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+ int arr[]={900,910,920,1100,1120};
+ int dept[]={940,1200,950,1130,1140};
+ 
+ int size=sizeof(arr)/sizeof(arr[0]);
+ sort(arr,arr+size);
+ sort(dept,dept+size);
+ int m=0;
+ int n=0;
+ int cut=0;
+ int maxcut=0;
+ while(m<size && n<size){
+ if(arr[m]<=dept[n]){
+     m++;
+     cut++;
+ }  
+ else{
+     n++;
+     cut--;
+ }    
+maxcut=max(maxcut,cut);
+ }
+
+cout<<maxcut;
+    
+    
+    return 0;
+}
